@@ -1,0 +1,35 @@
+.header {
+  padding: 0.5% 0%;
+  position: sticky;
+  top: 0.0063rem;
+  background: white;
+  z-index: 1;
+}
+
+.name-font {
+  color: #555555;
+  font-weight: bold;
+  font-family: "PTSans-Bold";
+  font-size: 0.875rem;
+}
+
+.description-font {
+  color: #555555;
+  font-family: "PTSans-Regular";
+  font-size: 0.875rem;
+}
+
+.avatar {
+  border-radius: 0.25rem;
+  border: none;
+  width: auto;
+  height: 2rem;
+
+  background-color: #f5f5f5;
+  text-align: center;
+
+  color: #555555;
+  font-weight: bold;
+  font-family: "PTSans-Bold";
+  font-size: 0.9375rem;
+}

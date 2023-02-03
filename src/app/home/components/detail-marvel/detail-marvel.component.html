@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 title">
+      <span class="pointer" (click)="goBack()"
+        ><i class="material-icons">arrow_back_ios</i></span
+      >Detalhes do Personagem
+    </div>
+    <!-- detalhe heroi -->
+    <div class="col-12 custom-card mt-4" *ngIf="character">
+      <div class="row">
+        <div class="col-12">
+          <img
+            [src]="
+              character.thumbnail.path + '.' + character.thumbnail.extension
+            "
+            class="custom-img"
+            [alt]="character?.name"
+          />
+        </div>
+        <div class="col-12 align-items-center">
+          <span class="name-font">{{ character.name }}</span>
+        </div>
+        <div class="col-12 align-items-center mt-2">
+          <span class="desc-font">{{ character.description }}</span>
+        </div>
+        <div class="col-12 mt-3">
+          <div class="row">
+            <div
+              class="col-12 col-lg-4 mb-2"
+              *ngIf="character.series.items.length"
+            >
+              <span class="name-font">Séries</span>
+              <ng-container
+                *ngFor="let serie of character.series.items; let i = index"
+              >
+                <div *ngIf="i < 3" class="p-1 desc-font">
+                  {{ serie.name }}
+                </div>
+              </ng-container>
+            </div>
+            <div
+              class="col-12 col-lg-4 mb-2"
+              *ngIf="character.stories.items.length"
+            >
+              <span class="name-font">Histórias</span>
+              <ng-container
+                *ngFor="let story of character.stories.items; let i = index"
+              >
+                <div *ngIf="i < 3" class="p-1 desc-font">
+                  {{ story.name }}
+                </div>
+              </ng-container>
+            </div>
+            <div
+              class="col-12 col-lg-4 mb-2"
+              *ngIf="character.events.items.length"
+            >
+              <span class="name-font">Eventos</span>
+              <ng-container
+                *ngFor="let event of character.events.items; let i = index"
+              >
+                <div *ngIf="i < 3" class="p-1 desc-font">
+                  {{ event.name }}
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 mt-3 text-left" *ngIf="character.urls.length">
+          <span class="name-font">Links</span>
+          <ng-container *ngFor="let link of character.urls; let i = index">
+            <div *ngIf="i < 3" class="p-1 desc-font">
+              <a [href]="link.url" target="_blank">{{ link.url }}</a>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 custom-card mt-4" *ngIf="!character">
+      <div class="col-12 align-items-center">
+        <span class="name-font">{{ info }}</span>
+      </div>
+    </div>
+  </div>
+</div>

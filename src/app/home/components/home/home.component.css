@@ -1,0 +1,153 @@
+.main-pad {
+  padding: 2% 0% 1%;
+}
+
+.list {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.title {
+  font-family: "PTSans-Bold";
+  color: #555555;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.label-font {
+  font-family: "PTSans-Bold";
+  color: #555555;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.custom-footer {
+  background-color: #ffffff;
+  height: auto;
+}
+
+.card {
+  box-shadow: 0rem 0rem 0.3125rem #00000033;
+  cursor: pointer;
+}
+
+.arrow {
+  border: none;
+  color: #8e8e8e;
+  cursor: pointer;
+  user-select: none;
+  font-size: 1.0625rem;
+}
+
+.arrow:hover {
+  background: #ffffff;
+}
+
+.arrow:active {
+  background: #ffffff;
+}
+
+.custom-box {
+  width: 2.8125rem;
+  height: 2rem;
+  text-align: center;
+  background: #f5f5f5;
+  border: 0.0625rem solid #e5e5e5;
+  color: #555555;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.custom-box:active {
+  background: #167abc;
+  color: #ffffff;
+}
+
+.active {
+  background: #167abc;
+  color: #ffffff;
+}
+
+.custom-img {
+  width: 3.125rem;
+  border-radius: 0.25rem;
+}
+
+.table-title-font {
+  color: #8e8e8e;
+  font-family: "PTSans-Regular";
+  font-size: 1rem;
+}
+
+.search-btn {
+  text-indent: -62.4375rem;
+  overflow: hidden;
+  width: 2.5rem;
+  padding: 0;
+  margin: 0;
+  border: 0.0625rem solid transparent;
+  border-radius: inherit;
+  background: transparent url("../../../../assets/images/search.svg") no-repeat
+    center;
+  cursor: pointer;
+  opacity: 0.7;
+  background-color: #ffffff;
+}
+
+.custom-input {
+  width: 16.25rem;
+  height: 2rem;
+  border-radius: 0.25rem;
+  border: none;
+  padding: 2%;
+  font-family: "PTSans-Italic";
+  font-size: 0.875rem;
+  color: #8e8e8e;
+}
+
+.custom-input-bg {
+  width: 18.75rem;
+  background-color: #ffffff;
+  border-radius: 0.25rem;
+}
+
+.custom-input:focus {
+  outline: none;
+}
+
+.name-font {
+  font-family: "PTSans-Bold";
+  color: #555555;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.desc-font {
+  font-family: "PTSans-Regular";
+  color: #555555;
+  font-size: 1rem;
+}
+
+@media (max-height: 800px) {
+  .main-pad {
+    height: 80%;
+  }
+}
+
+@media (max-width: 576px) {
+  .table-title-font {
+    text-align: center;
+  }
+  .title {
+    text-align: center;
+    margin-top: 4%;
+  }
+
+  .mobile-align-search {
+    text-align: -webkit-center;
+  }
+
+  .custom-row-pad {
+    padding: 0% 5%;
+  }
+}

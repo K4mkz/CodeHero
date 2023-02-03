@@ -1,0 +1,201 @@
+<div class="container main-pad">
+  <div class="row">
+    <div class="col-12 title">Busca de Personagens</div>
+    <div class="col-12 mt-4 mobile-align-search">
+      <label class="label-font mb-2">Nome do personagem</label>
+      <br />
+      <div class="custom-input-bg">
+        <input
+          class="custom-input"
+          type="text"
+          (keyup.enter)="getMarvelByName(0); currentPage = 1"
+          placeholder="Search"
+          [(ngModel)]="search"
+        />
+        <button
+          class="search-btn"
+          (click)="getMarvelByName(0); currentPage = 1"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-12">
+      <div class="row p-2">
+        <div class="table-title-font col-4">Personagem</div>
+        <div class="table-title-font col-4" *ngIf="!isMobile">Séries</div>
+        <div class="table-title-font col-4" *ngIf="!isMobile">Eventos</div>
+      </div>
+    </div>
+  </div>
+  <div class="container list">
+    <div class="row">
+      <div class="col-12 mt-2">
+        <div class="row custom-row-pad">
+          <div
+            class="col-12 card mb-2 p-2"
+            (click)="redirectDetail(character.id)"
+            *ngFor="let character of characters"
+          >
+            <div class="row">
+              <div class="col-4 d-flex align-items-center">
+                <div class="p-2">
+                  <img
+                    [src]="
+                      character.thumbnail.path +
+                      '.' +
+                      character.thumbnail.extension
+                    "
+                    class="custom-img"
+                    [alt]="character.name"
+                  />
+                </div>
+                <div class="p-2 name-font">{{ character.name }}</div>
+              </div>
+              <div class="col-4 p-2" *ngIf="!isMobile">
+                <div class="d-flex flex-column">
+                  <ng-container
+                    *ngFor="let serie of character.series.items; let i = index"
+                  >
+                    <div *ngIf="i < 3" class="p-1 desc-font">
+                      {{ serie.name }}
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="col-4 p-2" *ngIf="!isMobile">
+                <div class="d-flex flex-column">
+                  <ng-container
+                    *ngFor="let event of character.events.items; let i = index"
+                  >
+                    <div *ngIf="i < 3" class="p-1 desc-font">
+                      {{ event.name }}
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 card mb-2 p-2" *ngIf="characters.length == 0">
+            <div class="row">
+              <div class="col-12 d-flex align-items-center">
+                <div class="p-2">Personagem não encontrado</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- paginacao -->
+<footer class="container-fluid custom-footer d-flex justify-content-center">
+  <nav class="mt-2">
+    <ul class="pagination m-auto">
+      <!--arrow controle-->
+      <ng-container *ngIf="currentPage !== 1">
+        <li class="page-item p-1">
+          <span (click)="setPosition(1)" class="page-link arrow" href="#">
+            <span
+              ><i class="material-icons">keyboard_double_arrow_left</i></span
+            >
+          </span>
+        </li>
+        <li class="page-item p-1" *ngIf="currentPage">
+          <span
+            (click)="setPosition(currentPage - 1)"
+            class="page-link arrow"
+            href="#"
+          >
+            <span><i class="material-icons">keyboard_arrow_left</i></span>
+          </span>
+        </li>
+      </ng-container>
+      <!-- paginacao fixa 1 2 3 -->
+      <ng-container *ngIf="currentPage <= 2">
+        <li class="page-item p-1">
+          <span
+            (click)="setPosition(1)"
+            [ngClass]="currentPage == 1 ? 'active' : ''"
+            class="page-link custom-box"
+            href="#"
+            >1</span
+          >
+        </li>
+        <li class="page-item p-1" *ngIf="totalPage > 1">
+          <span
+            (click)="setPosition(2)"
+            [ngClass]="currentPage == 2 ? 'active' : ''"
+            class="page-link custom-box"
+            href="#"
+            >2</span
+          >
+        </li>
+        <li class="page-item p-1" *ngIf="totalPage > 2">
+          <span
+            (click)="setPosition(3)"
+            [ngClass]="currentPage == 3 ? 'active' : ''"
+            class="page-link custom-box"
+            href="#"
+            >3</span
+          >
+        </li>
+      </ng-container>
+      <!-- paginacao dinamica -->
+      <ng-container *ngIf="currentPage > 2">
+        <li class="page-item p-1" *ngIf="currentPage >= 2">
+          <span
+            (click)="setPosition(currentPage - 1)"
+            [ngClass]="currentPage == currentPage - 1 ? 'active' : ''"
+            class="page-link custom-box"
+            href="#"
+            >{{ currentPage - 1 }}</span
+          >
+        </li>
+        <li class="page-item p-1" *ngIf="currentPage > 2">
+          <span
+            (click)="setPosition(currentPage)"
+            [ngClass]="currentPage == currentPage ? 'active' : ''"
+            class="page-link custom-box"
+            href="#"
+            >{{ currentPage }}</span
+          >
+        </li>
+        <li class="page-item p-1" *ngIf="currentPage < totalPage">
+          <span
+            (click)="setPosition(currentPage + 1)"
+            [ngClass]="currentPage == currentPage + 1 ? 'active' : ''"
+            class="page-link custom-box"
+            href="#"
+            >{{ currentPage + 1 }}</span
+          >
+        </li>
+      </ng-container>
+      <!--arrow controle-->
+      <li
+        class="page-item p-1"
+        *ngIf="currentPage !== totalPage && totalPage > 1"
+      >
+        <span
+          (click)="setPosition(currentPage + 1)"
+          class="page-link arrow"
+          href="#"
+        >
+          <span><i class="material-icons">keyboard_arrow_right</i></span>
+        </span>
+      </li>
+      <li
+        class="page-item p-1"
+        *ngIf="currentPage !== totalPage && totalPage > 1"
+      >
+        <span (click)="setPosition(totalPage)" class="page-link arrow" href="#">
+          <span><i class="material-icons">keyboard_double_arrow_right</i></span>
+        </span>
+      </li>
+    </ul>
+  </nav>
+</footer>
